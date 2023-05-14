@@ -8,4 +8,4 @@ MAINTAINER "GitHub Expert Services"
 LABEL org.opencontainers.image.source="https://github.com/department-of-veterans-affairs/codeql-tools-go"
 LABEL org.opencontainers.image.description="GitHub Action for validating repositories meet CodeQL governance requirements."
 COPY --from=builder /app/verify-scans /
-CMD ["/verify-scans"]
+ENTRYPOINT ["/verify-scans"]

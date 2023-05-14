@@ -1,11 +1,14 @@
 .PHONY: docker
-docker: docker-verify-scans
+docker: docker-build docker-push
+
+.PHONY: docker-build
+docker-build: docker-build-verify-scans
 
 .PHONY: docker-push
 docker-push: docker-verify-scans-push
 
-.PHONY: docker-verify-scans
-docker-verify-scans:
+.PHONY: docker-build-verify-scans
+docker-build-verify-scans:
 	echo "Building docker image for verify-scans"
 	docker build -t ghcr.io/department-of-veterans-affairs/codeql-tools:verify-scans -f verify-scans/Dockerfile .
 
