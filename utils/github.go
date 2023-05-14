@@ -29,7 +29,7 @@ func NewGitHubAppClient(appID int64, privateKey []byte) (*github.Client, error) 
 	return github.NewClient(&http.Client{Transport: itr}), nil
 }
 
-func NewGitHubInstallationClient(appID int64, privateKey []byte, installationID int64) (*github.Client, error) {
+func NewGitHubInstallationClient(appID int64, installationID int64, privateKey []byte) (*github.Client, error) {
 	itr, err := ghinstallation.New(http.DefaultTransport, appID, installationID, privateKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create GitHub App transport: %v", err)
