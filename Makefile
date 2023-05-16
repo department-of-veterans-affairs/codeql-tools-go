@@ -38,3 +38,9 @@ docker-push-verify-scans:
 docker-run-verify-scans:
 	echo "Running docker image for verify-scans"
 	./scripts/docker-run-verify-scans.sh
+
+.PHONY: deps
+deps:
+	go get -u ./...
+	go mod tidy
+	go mod vendor

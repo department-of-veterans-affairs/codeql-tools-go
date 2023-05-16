@@ -25,9 +25,17 @@ if [[ ! -f verify-scans.pem ]]; then
   exit 1
 fi
 
-
-echo "Running Configure CodeQL Docker container..."
-docker run -it --rm --env-file configure-codeql/.env \
-  -e INPUT_CONFIGURE_CODEQL_PRIVATE_KEY="$(cat configure-codeql.pem)" \
-  -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
-  ghcr.io/department-of-veterans-affairs/codeql-tools:configure-codeql
+if [[ "${DEBUG:-}" == "true" ]]; then
+  echo "Running Configure CodeQL Docker container in debug mode..."
+  docker run -it --rm --env-file configure-codeql/.env \
+    -e DEBUG=true \
+    -e INPUT_CONFIGURE_CODEQL_PRIVATE_KEY="$(cat configure-codeql.pem)" \
+    -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
+    ghcr.io/department-of-veterans-affairs/codeql-tools:configure-codeql
+else
+  echo "Running Configure CodeQL Docker container..."
+  docker run -it --rm --env-file configure-codeql/.env \
+    -e INPUT_CONFIGURE_CODEQL_PRIVATE_KEY="$(cat configure-codeql.pem)" \
+    -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
+    ghcr.io/department-of-veterans-affairs/codeql-tools:configure-codeql
+fi

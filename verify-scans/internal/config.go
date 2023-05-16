@@ -1,12 +1,17 @@
-package main
+package internal
 
 import (
+	"os"
 	"strconv"
 
 	"github.com/sethvargo/go-githubactions"
 )
 
-func parseInput() *input {
+var (
+	DisableNotifications = os.Getenv("DRY_RUN") == "true"
+)
+
+func ParseInput() *Input {
 	adminToken := githubactions.GetInput("admin_token")
 	if adminToken == "" {
 		githubactions.Fatalf("admin_token input is required")
@@ -126,25 +131,25 @@ func parseInput() *input {
 		githubactions.Fatalf("verify_scans_installation_id input must be an integer")
 	}
 
-	return &input{
-		adminToken:                      adminToken,
-		daysToScan:                      daysToScan,
-		emassPromotionAppID:             emassPromotionAppIDInt64,
-		emassPromotionPrivateKey:        []byte(emassPromotionPrivateKey),
-		emassPromotionInstallationID:    emassPromotionInstallationIDInt64,
-		emassSystemListPath:             emassSystemListPath,
-		emassSystemListRepo:             emassSystemListRepo,
-		gmailFrom:                       gmailFrom,
-		gmailUser:                       gmailUser,
-		gmailPassword:                   gmailPassword,
-		missingInfoEmailTemplate:        missingInfoEmailTemplate,
-		missingInfoIssueTemplate:        missingInfoIssueTemplate,
-		nonCompliantEmailTemplate:       nonCompliantEmailTemplate,
-		org:                             org,
-		outOfComplianceCLIEmailTemplate: outOfComplianceCLIEmailTemplate,
-		secondaryEmail:                  secondaryEmail,
-		verifyScansAppID:                verifyScansAppIDInt64,
-		verifyScansPrivateKey:           []byte(verifyScansPrivateKey),
-		verifyScansInstallationID:       verifyScansInstallationIDInt64,
+	return &Input{
+		AdminToken:                      adminToken,
+		DaysToScan:                      daysToScan,
+		EMASSPromotionAppID:             emassPromotionAppIDInt64,
+		EMASSPromotionPrivateKey:        []byte(emassPromotionPrivateKey),
+		EMASSPromotionInstallationID:    emassPromotionInstallationIDInt64,
+		EMASSSystemListPath:             emassSystemListPath,
+		EMASSSystemListRepo:             emassSystemListRepo,
+		GmailFrom:                       gmailFrom,
+		GmailUser:                       gmailUser,
+		GmailPassword:                   gmailPassword,
+		MissingInfoEmailTemplate:        missingInfoEmailTemplate,
+		MissingInfoIssueTemplate:        missingInfoIssueTemplate,
+		NonCompliantEmailTemplate:       nonCompliantEmailTemplate,
+		Org:                             org,
+		OutOfComplianceCLIEmailTemplate: outOfComplianceCLIEmailTemplate,
+		SecondaryEmail:                  secondaryEmail,
+		VerifyScansAppID:                verifyScansAppIDInt64,
+		VerifyScansPrivateKey:           []byte(verifyScansPrivateKey),
+		VerifyScansInstallationID:       verifyScansInstallationIDInt64,
 	}
 }

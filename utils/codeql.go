@@ -1,6 +1,6 @@
 package utils
 
-var supportedCodeQLLanguages = []string{
+var SupportedCodeQLLanguages = []string{
 	"c",
 	"cpp",
 	"csharp",
@@ -11,10 +11,11 @@ var supportedCodeQLLanguages = []string{
 	"python",
 	"ruby",
 	"typescript",
+	"swift",
 }
 
 func IsSupportedCodeQLLanguage(language string) bool {
-	for _, supportedLanguage := range supportedCodeQLLanguages {
+	for _, supportedLanguage := range SupportedCodeQLLanguages {
 		if language == supportedLanguage {
 			return true
 		}

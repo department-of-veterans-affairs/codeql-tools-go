@@ -7,12 +7,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const (
-	PullRequestTitle = "Action Required: Configure CodeQL"
-	SourceBranchName = "ghas-enforcement-codeql"
-	SourceRepo       = "department-of-veterans-affairs/codeql-tools"
-)
-
 type Manager struct {
 	Context context.Context
 

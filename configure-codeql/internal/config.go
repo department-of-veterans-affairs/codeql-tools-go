@@ -7,6 +7,12 @@ import (
 	"github.com/sethvargo/go-githubactions"
 )
 
+const (
+	PullRequestTitle = "Action Required: Configure CodeQL"
+	SourceBranchName = "ghas-enforcement-codeql"
+	SourceRepo       = "department-of-veterans-affairs/codeql-tools"
+)
+
 func ParseInput() *Input {
 	adminToken := githubactions.GetInput("admin_token")
 	if adminToken == "" {

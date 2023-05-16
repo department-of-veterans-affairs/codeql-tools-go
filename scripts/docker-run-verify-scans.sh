@@ -25,8 +25,17 @@ if [ ! -f emass-promotion.pem ]; then
   exit 1
 fi
 
-echo "Running Verify Scans Docker container..."
-docker run -it --rm --env-file verify-scans/.env \
-  -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
-  -e INPUT_EMASS_PROMOTION_PRIVATE_KEY="$(cat emass-promotion.pem)" \
-  ghcr.io/department-of-veterans-affairs/codeql-tools:verify-scans
+if [[ "${DEBUG:-}" == "true" ]]; then
+  echo "Running Verify Scans Docker container in debug mode..."
+  docker run -it --rm --env-file verify-scans/.env \
+    -e DEBUG=true \
+    -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
+    -e INPUT_EMASS_PROMOTION_PRIVATE_KEY="$(cat emass-promotion.pem)" \
+    ghcr.io/department-of-veterans-affairs/codeql-tools:verify-scans
+else
+  echo "Running Verify Scans Docker container..."
+  docker run -it --rm --env-file verify-scans/.env \
+    -e INPUT_VERIFY_SCANS_PRIVATE_KEY="$(cat verify-scans.pem)" \
+    -e INPUT_EMASS_PROMOTION_PRIVATE_KEY="$(cat emass-promotion.pem)" \
+    ghcr.io/department-of-veterans-affairs/codeql-tools:verify-scans
+fi
