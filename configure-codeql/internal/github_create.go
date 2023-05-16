@@ -15,7 +15,6 @@ func (m *Manager) CreateFile(owner, repo, branch, path, message, content string)
 		Content: []byte(content),
 		Branch:  github.String(branch),
 	}
-
 	_, _, err := m.AdminGitHubClient.Repositories.CreateFile(m.Context, owner, repo, path, opts)
 	if err != nil {
 		return fmt.Errorf("failed to create file: %v", err)
