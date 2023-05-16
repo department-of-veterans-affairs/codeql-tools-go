@@ -1,12 +1,13 @@
-package main
+package internal
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/sethvargo/go-githubactions"
 )
 
-func parseInput() *input {
+func ParseInput() *Input {
 	adminToken := githubactions.GetInput("admin_token")
 	if adminToken == "" {
 		githubactions.Fatalf("admin_token input is required")
@@ -72,15 +73,15 @@ func parseInput() *input {
 		githubactions.Fatalf("verify_scans_installation_id input must be an integer: %v", err)
 	}
 
-	return &input{
-		adminToken:                    adminToken,
-		configureCodeQLAppID:          configureCodeQLAppIDInt64,
-		configureCodeQLPrivateKey:     []byte(configureCodeQLPrivateKey),
-		configureCodeQLInstallationID: configureCodeQLInstallationIDInt64,
-		org:                           org,
-		pullRequestBody:               pullRequestBody,
-		verifyScansAppID:              verifyScansAppIDInt64,
-		verifyScansPrivateKey:         []byte(verifyScansPrivateKey),
-		verifyScansInstallationID:     verifyScansInstallationIDInt64,
+	return &Input{
+		AdminToken:                    adminToken,
+		ConfigureCodeQLAppID:          configureCodeQLAppIDInt64,
+		ConfigureCodeQLPrivateKey:     []byte(configureCodeQLPrivateKey),
+		ConfigureCodeQLInstallationID: configureCodeQLInstallationIDInt64,
+		Org:                           strings.ToLower(org),
+		PullRequestBody:               pullRequestBody,
+		VerifyScansAppID:              verifyScansAppIDInt64,
+		VerifyScansPrivateKey:         []byte(verifyScansPrivateKey),
+		VerifyScansInstallationID:     verifyScansInstallationIDInt64,
 	}
 }

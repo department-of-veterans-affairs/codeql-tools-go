@@ -102,7 +102,6 @@ func main() {
 		if err != nil {
 			logger.Fatalf("failed to check if repository is ignored: %v", err)
 		}
-
 		if repoIgnored {
 			logger.Infof("[skipped-ignore] Repository is ignored, skipping")
 			continue
