@@ -1,0 +1,31 @@
+{
+  "name": "codeql-tools",
+  "version": "1.0.0",
+  "description": "A collection of tools for automating enablement and enforcement of CodeQL",
+  "scripts": {
+    "build": "npm run build:parse-build-steps && npm run build:upload-database && npm run build:validate-monorepo-access",
+    "build:parse-build-steps": "npx rimraf parse-build-steps/dist && npx @vercel/ncc build parse-build-steps/index.js -o parse-build-steps/dist",
+    "build:upload-database": "npx rimraf upload-database/dist && npx @vercel/ncc build upload-database/index.js -o upload-database/dist",
+    "build:validate-monorepo-access": "npx rimraf validate-monorepo-access/dist && npx @vercel/ncc build validate-monorepo-access/index.js -o validate-monorepo-access/dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/department-of-veterans-affairs/codeql-tools.git"
+  },
+  "author": "GitHub Expert Services",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/department-of-veterans-affairs/codeql-tools/issues"
+  },
+  "homepage": "https://github.com/department-of-veterans-affairs/codeql-tools#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "@octokit/app": "^13.1.4",
+    "@octokit/plugin-retry": "^4.1.3",
+    "@octokit/plugin-throttling": "^6.0.0",
+    "@octokit/rest": "^19.0.11",
+    "archiver": "^5.3.1",
+    "js-yaml": "^4.1.0"
+  }
+}

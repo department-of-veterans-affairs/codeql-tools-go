@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/configure-codeql"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/emass-promotion"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/verify-scans"
+    schedule:
+      interval: "weekly"
+  
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
