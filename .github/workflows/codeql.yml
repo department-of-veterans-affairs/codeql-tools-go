@@ -1,0 +1,36 @@
+name: CodeQL
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: 30 4 * * 2
+  workflow_dispatch:
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language:
+          - javascript
+          - go
+    steps:
+      - name: Run Code Scanning
+        uses: department-of-veterans-affairs/codeql-tools/codeql-analysis@main
+        with:
+          allowlist_credentials: ${{ secrets.MONOREPO_ALLOWLIST_CREDENTIALS }}
+          config: |
+            paths-ignore:
+              - upload-database/dist
+              - parse-build-steps/dist
+              - validate-monorepo-access/dist
+          language: ${{ matrix.language }}
