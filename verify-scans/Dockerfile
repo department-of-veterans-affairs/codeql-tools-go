@@ -1,4 +1,4 @@
-FROM golang:1.20-bullseye as builder
+FROM golang:1.21-bullseye as builder
 WORKDIR /app
 COPY . .
 RUN go build -o /verify-scans ./verify-scans/cmd
