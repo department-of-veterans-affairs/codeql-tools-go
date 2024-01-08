@@ -3,7 +3,7 @@ module github.com/department-of-veterans-affairs/codeql-tools
 go 1.20
 
 require (
-	github.com/bradleyfalzon/ghinstallation/v2 v2.4.0
+	github.com/bradleyfalzon/ghinstallation/v2 v2.9.0
 	github.com/google/go-github/v52 v52.0.0
 	github.com/sethvargo/go-githubactions v1.1.0
 	github.com/sirupsen/logrus v1.9.2
@@ -16,6 +16,7 @@ require (
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/google/go-github/v57 v57.0.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/sethvargo/go-envconfig v0.9.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
